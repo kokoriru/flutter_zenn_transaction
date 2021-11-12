@@ -9,7 +9,7 @@ class TestPage3 extends StatelessWidget {
       ),
       body: Center(
         child: TextButton(
-          onPressed: () => { Navigator.popUntil(context, ModalRoute.withName('/test1')) },
+          onPressed: () => { Navigator.popUntil(context, ModalRoute.withName('/test2')) },
           child: Text('Page2へ戻る', style: TextStyle(fontSize: 30)),
         ),
       ),
