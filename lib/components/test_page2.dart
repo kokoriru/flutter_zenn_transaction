@@ -12,7 +12,7 @@ class TestPage2 extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () => {
-                Navigator.of(context).pushNamed('/test3')
+                Navigator.pushNamed(context, '/test3')
               },
               child: Text('Page3へ進む', style: TextStyle(fontSize: 30)),
             ),
