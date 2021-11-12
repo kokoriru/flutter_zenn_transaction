@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zenn_transition/components/test_page3.dart';
 
 class TestPage2 extends StatelessWidget {
   @override
@@ -13,14 +12,12 @@ class TestPage2 extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () => {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return TestPage3();
-                }))
+                Navigator.of(context).pushNamed('/test3')
               },
               child: Text('Page3へ進む', style: TextStyle(fontSize: 30)),
             ),
             TextButton(
-              onPressed: () => { Navigator.of(context).pop() },
+              onPressed: () => { Navigator.popUntil(context, ModalRoute.withName('/test1')) },
               child: Text('Page1へ戻る', style: TextStyle(fontSize: 30))
             ),
           ],

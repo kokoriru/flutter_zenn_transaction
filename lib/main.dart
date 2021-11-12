@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_zenn_transition/components/test_page1.dart';
+import 'package:flutter_zenn_transition/components/test_page2.dart';
+import 'package:flutter_zenn_transition/components/test_page3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/test1',
+      routes: {
+        "/test1": (context) => TestPage1(),
+        "/test2": (context) => TestPage2(),
+        "/test3": (context) => TestPage3(),
+      },
     );
   }
 }
