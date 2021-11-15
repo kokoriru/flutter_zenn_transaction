@@ -67,6 +67,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 child: Container(color: Colors.purple),
               ),
             ),
+            AnimatedAlign(
+              duration: Duration(seconds: 3),
+              alignment: flag? Alignment.topLeft : Alignment.bottomRight,
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: Container(color: Colors.green),
+              ),
+            ),
           ],
         ),
       ),
