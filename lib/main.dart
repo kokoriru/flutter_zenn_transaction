@@ -66,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
+        scrollDirection: Axis.vertical,
         children: _pages
       ),
     );
