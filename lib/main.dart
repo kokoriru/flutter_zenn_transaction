@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_zenn_transition/components/test_page1.dart';
-import 'package:flutter_zenn_transition/components/test_page2.dart';
-import 'package:flutter_zenn_transition/components/test_page3.dart';
+import 'components/test_page1.dart';
+import 'components/test_page2.dart';
+import 'components/test_page3.dart';
 
 void main() {
   runApp(const MyApp());
