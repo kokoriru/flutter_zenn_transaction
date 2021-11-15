@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'components/test_page1.dart';
@@ -33,10 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late AnimationController _animationControler;
-  late Animation<double> _animationDouble;
-  Tween<double> _tweenDouble = Tween(begin: 0.0, end: 200.0);
-  late Animation<Color?> _animationColor;
-  ColorTween _tweenColor = ColorTween(begin: Colors.green, end: Colors.blue);
+  late Animation _animation;
 
   _play() async {
     setState(() {
@@ -60,16 +59,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _animationControler =
-        AnimationController(vsync: this, duration: Duration(seconds: 3));
-
-    _animationDouble = _tweenDouble.animate(_animationControler);
-    _animationDouble.addListener(() {
-      setState(() {});
-    });
-    _animationColor = _tweenColor.animate(_animationControler);
-    _animationColor.addListener(() {
-      setState(() {});
-    });
+      AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _animation = _animationControler.drive(Tween(begin: 0.0, end: 2.0 * pi));
   }
 
   @override
@@ -85,21 +76,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text("AnimationController:${_animationControler.value}"),
-            Text("AnimationDouble:${_animationDouble.value}"),
-            Text("AnimationColor:${_animationColor.value}"),
-            SizeTransition(
-              sizeFactor: _animationControler,
-              child: Center(
-                child: SizedBox(
-                  width: _animationDouble.value,
-                  height: _animationDouble.value,
-                  child: Container(color: _animationColor.value))),
-            ),
-          ],
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (context, _) {
+            return Transform.rotate(
+              angle: _animation.value, child: Icon(Icons.cached, size: 100),
+            );
+          },
         ),
       ),
       floatingActionButton:
@@ -109,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           FloatingActionButton(onPressed: _stop, child: Icon(Icons.pause)),
           FloatingActionButton(
             onPressed: _reverse, child: Icon(Icons.arrow_back)),
-        ]
+        ],
       ),
     );
   }
