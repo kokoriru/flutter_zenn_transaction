@@ -31,44 +31,39 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  late PageController _pageController;
-  int _selectedIndex = 0;
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  bool flag = false;
 
-  // ボトムメニューの遷移先画面
-  var _pages = [
-    TestPage1(),
-    TestPage2(),
-    TestPage3(),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: _selectedIndex);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
-
-  void _onPageChanged(int index) {
+  _click() async {
     setState(() {
-      _selectedIndex = index;
+      flag = !flag;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: _onPageChanged,
-        scrollDirection: Axis.vertical,
-        children: _pages
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            AnimatedOpacity(
+              opacity: flag ? 0.1 : 1.0,
+              duration: Duration(seconds: 3),
+              child: Text(
+                '消える文字',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        FloatingActionButton(onPressed: _click, child: Icon(Icons.add)),
+      ]),
     );
   }
 }
