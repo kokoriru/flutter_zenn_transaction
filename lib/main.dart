@@ -58,6 +58,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
+            AnimatedSize(
+              vsync: this,
+              duration: Duration(seconds: 3),
+              child: SizedBox(
+                width: flag ? 50 : 200,
+                height: flag ? 50 : 200,
+                child: Container(color: Colors.purple),
+              ),
+            ),
           ],
         ),
       ),
